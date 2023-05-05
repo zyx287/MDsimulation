@@ -1,0 +1,9 @@
+&general
+  startframe=1, endframe=4000, interval=10,
+  verbose=1, 
+/
+&gb
+  igb=5, saltcon=0.154
+/
+&decomp
+  idecomp=2, dec_verbose=0

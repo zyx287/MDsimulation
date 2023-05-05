@@ -1,0 +1,7 @@
+parm ../complex.prmtop
+trajin ../gamd.nc
+strip :WAT,Cl-,Na+,ATP
+autoimage
+rms first @CA out rmsd.dat
+run
+quit

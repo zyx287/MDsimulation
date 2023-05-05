@@ -1,0 +1,21 @@
+parm ../complex.prmtop
+parmstrip :WAT,Na+,Cl-,ATP
+parmwrite out complex-dele.prmtop
+run
+clear all
+parm ../complex.prmtop
+parmstrip :WAT,Na+,Cl-,ATP
+parmwrite out complex-dele.psf
+run
+clear all
+parm ../complex.prmtop
+trajin ../gamd.nc
+strip :WAT,Na+,Cl-,ATP
+trajout gamd-dele.nc
+run
+clear all
+parm complex-dele.prmtop
+trajin gamd-dele.nc
+trajout gamd-dele.dcd
+run
+quit

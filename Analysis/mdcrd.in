@@ -1,0 +1,5 @@
+parm ../complex.prmtop
+trajin ../gamd.nc 16001 20000 1
+trajout gamd200ns.mdcrd
+run
+quit

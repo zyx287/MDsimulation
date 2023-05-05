@@ -1,0 +1,14 @@
+parm ../complex.prmtop
+reference refwt.pdb
+trajin ../gamd.nc
+rms reference :1-299@CA
+average crdset average
+createcrd avertrajectories
+run
+crdaction avertrajectories rms ref average :1-299@CA
+crdaction avertrajectories matrix covar :1-299@CA out matrix.dat name new_covar
+runanalysis diagmatrix new_covar out evecs.dat \
+    vecs 3 name myEvecs \
+    nmwiz nmwizvecs 3 nmwizfile WTP.nmd nmwizmask :1-299@CA
+crdaction avertrajectories projection modes myEvecs out project.dat beg 1 end 3 :1-299@CA
+quit

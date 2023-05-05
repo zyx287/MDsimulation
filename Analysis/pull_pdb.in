@@ -1,0 +1,9 @@
+parm ../../complex.prmtop
+trajin ../gamd.nc 1 last 100
+strip :WAT,Cl-,Na+
+unwrap :1-300
+autoimage
+rms first
+trajout gamd.pdb
+run
+quit

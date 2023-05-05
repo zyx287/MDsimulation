@@ -1,0 +1,8 @@
+parm ../complex.prmtop
+trajin min1.rst
+unwrap :1-299
+center :1-299 origin mass
+image origin center familiar
+trajout min1-output.pdb
+run
+quit

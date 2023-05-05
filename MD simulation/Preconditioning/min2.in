@@ -1,0 +1,8 @@
+Minimization with Cartesin restraints for the 1gng_atp
+&cntrl
+imin = 1,
+maxcyc = 100000,
+ncyc = 4000,
+ntb = 1,
+cut=10
+/

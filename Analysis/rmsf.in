@@ -1,0 +1,8 @@
+parm ../complex.prmtop
+trajin ../gamd.nc
+strip :WAT,Cl-,Na+,ATP
+autoimage
+rms first
+atomicfluct out rmsfbyres.dat @CA byres
+run
+quit

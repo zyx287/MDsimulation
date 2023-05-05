@@ -1,0 +1,5 @@
+pmemd -O -i pepcmdcpu.in -o cmdcpu.out -c equil.rst -r cmdcpu.rst -x cmdcpu.nc -p acHOLO.parm7 &
+pmemd.cuda -O -i pepcmd.in -o cmd1.out -c equil.rst -r cmd1.rst -x cmd1.nc -p acHOLO.parm7 &
+pmemd.cuda -O -i pepmdcollect.in -o collect.out -c cmd1.rst -r collect.rst -x collect.nc -p acHOLO.parm7 &
+export CUDA_VISIBLE_DEVICES=0x
+pmemd.cuda -O -i pepgamd.in -o gamd.out -c collect.rst -r gamd.rst -x gamd.nc -p acHOLO.parm7 &

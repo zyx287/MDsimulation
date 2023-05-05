@@ -1,0 +1,57 @@
+10-ns for collecting potential statics and 50-ns for equilibration
+ &cntrl
+    imin=0,        ! No minimization
+    irest=0,       ! This IS a new MD simulation
+    ntx=1,         ! read coordinates only
+
+    ! Temperature control
+    ntt=3,         ! Langevin dynamics
+    gamma_ln=1.0,  ! Friction coefficient (ps^-1)
+    temp0=300.0,   ! Target temperature
+    ig=-1,         ! random seed
+
+    ! Potential energy control
+    cut=10.0,       ! nonbonded cutoff, in Angstroms
+
+    ! MD settings
+    nstlim=30000000, ! simulation length
+    dt=0.002,      ! time step (ps)
+
+    ! SHAKE
+    ntc=2,         ! Constrain bonds containing hydrogen
+    ntf=2,         ! Do not calculate forces of bonds containing hydrogen
+
+    ! Control how often information is printed
+    ntpr=10000,     ! Print energies every 1000 steps
+    ntwx=10000,     ! Print coordinates every 1000 steps to the trajectory
+    ntwr=10000,     ! Print a restart file every 5K steps (can be less frequent)
+    ntxo=2,        ! Write NetCDF format
+    ioutfm=1,      ! Write NetCDF format (always do this!)
+
+    ! Wrap coordinates when printing them to the same unit cell
+    iwrap=1,
+
+    ! Constant pressure control. Note that ntp=3 requires barostat=1
+    barostat=1,    ! Berendsen... change to 2 for MC barostat
+    ntp=1,         ! 1=isotropic, 2=anisotropic, 3=semi-isotropic w/ surften
+    pres0=1.0,     ! Target external pressure, in bar
+    taup=5.0,      ! Berendsen coupling constant (ps)
+    ntb=2,         ! Default when ntp>0
+
+    ! Set water atom/residue names for SETTLE recognition
+    ! watnam='TIP3', ! Water residues are named TIP3
+    ! owtnm='OH2',   ! Water oxygens are named OH2
+
+    ! GaMD parameters
+    igamd = 3,    ! Dual boost GaMD
+    iE = 1,       ! Threshold energy set to the lower bound E=Vmax 
+    irest_gamd = 0,     ! 0=New GaMD simulation, 1=restart simulation--read gamd-restart.dat
+    ntcmd = 5000000,    ! cMD steps
+    nteb = 25000000,    ! biasing molecular dynamics simulation steps
+    ntave = 500000,     ! Num of steps to calculate Avg. and SD of potential energy
+    ntcmdprep = 4000000,   ! cMD steps without collect energy
+    ntebprep = 1000000,    ! biasing MD steps without updating
+    sigma0P = 6.0, 
+    sigma0D = 6.0,
+ /
+

@@ -1,0 +1,8 @@
+parm ../../complex.prmtop
+trajin ../gamdrepeat.nc
+strip :WAT,Cl-,Na+,ATP
+autoimage
+rms first
+matrix correl name corr out dccm.txt @CA byres
+run
+quit

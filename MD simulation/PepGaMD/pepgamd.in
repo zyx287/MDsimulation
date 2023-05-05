@@ -1,0 +1,66 @@
+100-ns GaMD simulation and repeat running jobs using this input file
+ &cntrl
+    imin=0,        ! No minimization
+    irest=1,       ! This IS NOT a new MD simulation
+    ntx=5,         ! read coordinates and velocities
+
+    ! Temperature control
+    ntt=3,         ! Langevin dynamics
+    gamma_ln=1.0,  ! Friction coefficient (ps^-1)
+    temp0=300.0,   ! Target temperature
+    ig=-1,         ! random seed
+
+    ! Potential energy control
+    cut=10.0,       ! nonbonded cutoff, in Angstroms
+
+    ! MD settings
+    nstlim=500000000, ! simulation length
+    dt=0.002,      ! time step (ps)
+
+    ! SHAKE
+    ntc=2,         ! Constrain bonds containing hydrogen
+    ntf=2,         ! Do not calculate forces of bonds containing hydrogen
+
+    ! Control how often information is printed
+    ntpr=25000,     ! Print energies every 5000 steps
+    ntwx=25000,     ! Print coordinates every 5000 steps to the trajectory
+    ntwr=25000,    ! Print a restart file every 5K steps (can be less frequent)
+    ntxo=2,        ! Write NetCDF format
+    ioutfm=1,      ! Write NetCDF format (always do this!)
+
+    ! Wrap coordinates when printing them to the same unit cell
+    iwrap=1,
+
+    ! Constant pressure control. Note that ntp=3 requires barostat=1
+    barostat=1,    ! Berendsen... change to 2 for MC barostat
+    ntp=1,         ! 1=isotropic, 2=anisotropic, 3=semi-isotropic w/ surften
+    pres0=1.0,     ! Target external pressure, in bar
+    taup=5.0,      ! Berendsen coupling constant (ps)
+    ntb=2,         ! Default when ntp>0
+
+    ! Set water atom/residue names for SETTLE recognition
+    ! watnam='TIP3', ! Water residues are named TIP3
+    ! owtnm='OH2',   ! Water oxygens are named OH2
+
+    ! Pep-GaMD parameters
+    igamd = 15,       ! Dual boost Pep-GaMD
+    iEP = 1,          ! Set the threshold energy to the lower bound E = Vmax (First boost)
+    iED = 1,          ! Set the threshold energy to the lower bound E = Vmax (Second boost)
+    irest_gamd = 1,   ! 0=New GaMD simulation, 1=restart simulation--read gamd-restart.dat
+    gti_cpu_output = 0,
+    gti_add_sc = 1,
+    icfe = 1,
+    ifsc = 1,
+    ntcmd = 0,  ! cMD steps
+    nteb = 0,         ! biasing molecular dynamics simulation steps
+    ntave = 500000,  ! Num of steps to calculate Avg. and SD of potential energy
+    ntcmdprep = 0,   ! cMD steps without collect energy
+    ntebprep = 0,    ! biasing MD steps without updating
+    sigma0P = 6.0, 
+    sigma0D = 6.0,
+    timask1=':306-314',
+    scmask1=':306-314',
+    timask2='',
+    scmask2='',
+ /
+

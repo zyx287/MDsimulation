@@ -1,0 +1,22 @@
+ubp: 10ps MD with res on protein from 0K T0 150K
+ &cntrl
+  imin = 0,
+  irest = 0,
+  ntx = 1,
+  ntb = 1,
+  cut = 10,
+  ntr = 1,
+  ntc = 2,
+  ntf = 2,
+  tempi = 0.0,
+  temp0 = 300.0,
+  ntt = 3,
+  gamma_ln = 1.0,
+  nstlim = 150000, dt = 0.002,
+  ntpr = 5000, ntwx = 5000, ntwr = 5000
+ /
+Hold the ubp fixed
+10.0
+RES 1 304
+END
+END

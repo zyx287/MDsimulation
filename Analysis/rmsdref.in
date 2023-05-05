@@ -1,0 +1,8 @@
+parm ../complex.prmtop
+trajin ../gamd.nc
+strip :WAT,Na+,Cl-
+parm aloopref.pdb
+reference aloopref.pdb parm aloopref.pdb [WT]
+rms ToWT ref [WT] :180-203@CA :50-73@CA out rmsdref.dat
+trajout overlap.pdb onlyframes 1
+run
